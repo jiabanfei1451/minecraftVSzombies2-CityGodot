@@ -173,6 +173,7 @@ texture = ExtResource("5_tcpcs")
 stream = ExtResource("6_i0vqy")
 
 [node name="Texture" type="Control" parent="Level" unique_id=1959201812]
+process_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -197,7 +198,7 @@ grow_vertical = 2
 offset_transform_enabled = true
 metadata/_edit_use_anchors_ = true
 
-[node name="蓝图展示" type="Control" parent="Select_CardUI" unique_id=1590141591]
+[node name="BluePrint" type="Control" parent="Select_CardUI" unique_id=1590141591]
 layout_mode = 1
 anchor_top = 0.90416664
 anchor_bottom = 1.0239583
@@ -210,7 +211,7 @@ layout_direction = 2
 theme = ExtResource("7_oc2sj")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel5" type="Panel" parent="Select_CardUI/蓝图展示" unique_id=1275800099]
+[node name="Panel5" type="Panel" parent="Select_CardUI/BluePrint" unique_id=1275800099]
 modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -221,7 +222,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_oso7i")
 metadata/_edit_use_anchors_ = true
 
-[node name="选卡节点" type="Control" parent="Select_CardUI/蓝图展示" unique_id=2105569702]
+[node name="SelectedNode" type="Control" parent="Select_CardUI/BluePrint" unique_id=2105569702]
 layout_mode = 1
 anchor_left = -0.00084175006
 anchor_top = 0.0010733425
@@ -235,7 +236,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Node" type="Control" parent="Select_CardUI/蓝图展示/选卡节点" unique_id=602648334]
+[node name="Node" type="Control" parent="Select_CardUI/BluePrint/SelectedNode" unique_id=602648334]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -247,7 +248,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_k06p6")
 
-[node name="Global_Position_Index" type="GridContainer" parent="Select_CardUI/蓝图展示/选卡节点/Node" unique_id=1598240649]
+[node name="Global_Position_Index" type="GridContainer" parent="Select_CardUI/BluePrint/SelectedNode/Node" unique_id=1598240649]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -259,127 +260,127 @@ theme_override_constants/v_separation = 0
 columns = 8
 metadata/_edit_use_anchors_ = true
 
-[node name="占位" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=724914924 instance=ExtResource("9_byjyl")]
+[node name="占位" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=724914924 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位2" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1257258890 instance=ExtResource("9_byjyl")]
+[node name="占位2" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1257258890 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位3" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1051705434 instance=ExtResource("9_byjyl")]
+[node name="占位3" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1051705434 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位4" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=822977094 instance=ExtResource("9_byjyl")]
+[node name="占位4" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=822977094 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位5" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=683687888 instance=ExtResource("9_byjyl")]
+[node name="占位5" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=683687888 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位6" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=2036493647 instance=ExtResource("9_byjyl")]
+[node name="占位6" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=2036493647 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位7" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=399408441 instance=ExtResource("9_byjyl")]
+[node name="占位7" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=399408441 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位8" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=2146567806 instance=ExtResource("9_byjyl")]
+[node name="占位8" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=2146567806 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位9" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1138893241 instance=ExtResource("9_byjyl")]
+[node name="占位9" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1138893241 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位10" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1565796507 instance=ExtResource("9_byjyl")]
+[node name="占位10" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1565796507 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位11" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=2026604129 instance=ExtResource("9_byjyl")]
+[node name="占位11" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=2026604129 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位12" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1480192166 instance=ExtResource("9_byjyl")]
+[node name="占位12" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1480192166 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位13" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1463709302 instance=ExtResource("9_byjyl")]
+[node name="占位13" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1463709302 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位14" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1965206055 instance=ExtResource("9_byjyl")]
+[node name="占位14" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1965206055 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位15" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=979262089 instance=ExtResource("9_byjyl")]
+[node name="占位15" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=979262089 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位16" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1695863062 instance=ExtResource("9_byjyl")]
+[node name="占位16" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1695863062 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位17" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1706875414 instance=ExtResource("9_byjyl")]
+[node name="占位17" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1706875414 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位18" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=785011120 instance=ExtResource("9_byjyl")]
+[node name="占位18" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=785011120 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位19" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=669086983 instance=ExtResource("9_byjyl")]
+[node name="占位19" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=669086983 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位20" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=475236437 instance=ExtResource("9_byjyl")]
+[node name="占位20" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=475236437 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位21" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=297017881 instance=ExtResource("9_byjyl")]
+[node name="占位21" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=297017881 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位22" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=414454624 instance=ExtResource("9_byjyl")]
+[node name="占位22" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=414454624 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位23" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1035383847 instance=ExtResource("9_byjyl")]
+[node name="占位23" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1035383847 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位24" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1228160930 instance=ExtResource("9_byjyl")]
+[node name="占位24" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1228160930 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位25" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=997620942 instance=ExtResource("9_byjyl")]
+[node name="占位25" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=997620942 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位26" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1017986093 instance=ExtResource("9_byjyl")]
+[node name="占位26" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1017986093 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位27" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1421361171 instance=ExtResource("9_byjyl")]
+[node name="占位27" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1421361171 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位28" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1698790993 instance=ExtResource("9_byjyl")]
+[node name="占位28" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1698790993 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位29" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1430215167 instance=ExtResource("9_byjyl")]
+[node name="占位29" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1430215167 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位30" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1767675400 instance=ExtResource("9_byjyl")]
+[node name="占位30" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1767675400 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位31" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1524252749 instance=ExtResource("9_byjyl")]
+[node name="占位31" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1524252749 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位32" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1900384393 instance=ExtResource("9_byjyl")]
+[node name="占位32" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1900384393 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位33" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1466304669 instance=ExtResource("9_byjyl")]
+[node name="占位33" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1466304669 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位34" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=877325232 instance=ExtResource("9_byjyl")]
+[node name="占位34" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=877325232 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位35" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1051038948 instance=ExtResource("9_byjyl")]
+[node name="占位35" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1051038948 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位36" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=593187541 instance=ExtResource("9_byjyl")]
+[node name="占位36" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=593187541 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位37" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1842523884 instance=ExtResource("9_byjyl")]
+[node name="占位37" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1842523884 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位38" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1527287495 instance=ExtResource("9_byjyl")]
+[node name="占位38" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1527287495 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位39" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=634514157 instance=ExtResource("9_byjyl")]
+[node name="占位39" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=634514157 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="占位40" parent="Select_CardUI/蓝图展示/选卡节点/Node/Global_Position_Index" unique_id=1257192928 instance=ExtResource("9_byjyl")]
+[node name="占位40" parent="Select_CardUI/BluePrint/SelectedNode/Node/Global_Position_Index" unique_id=1257192928 instance=ExtResource("9_byjyl")]
 layout_mode = 2
 
-[node name="Card" type="Control" parent="Select_CardUI/蓝图展示/选卡节点/Node" unique_id=2136885167]
+[node name="Card" type="Control" parent="Select_CardUI/BluePrint/SelectedNode/Node" unique_id=2136885167]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -388,7 +389,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_ssg4b")
 
-[node name="Label" type="Label" parent="Select_CardUI/蓝图展示/选卡节点/Node" unique_id=1936228479]
+[node name="Label" type="Label" parent="Select_CardUI/BluePrint/SelectedNode/Node" unique_id=1936228479]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,7 +402,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="TouchPad" type="Control" parent="Select_CardUI/蓝图展示/选卡节点/Node" unique_id=945097853]
+[node name="TouchPad" type="Control" parent="Select_CardUI/BluePrint/SelectedNode/Node" unique_id=945097853]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -412,7 +413,7 @@ script = ExtResource("11_h5g1x")
 Auto_Enable_Index = 1
 metadata/_custom_type_script = "uid://dxcwm5rs1tc5b"
 
-[node name="Panel3" type="Panel" parent="Select_CardUI/蓝图展示" unique_id=1231187989]
+[node name="Panel3" type="Panel" parent="Select_CardUI/BluePrint" unique_id=1231187989]
 modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -429,7 +430,7 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_kxvtp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel4" type="Panel" parent="Select_CardUI/蓝图展示" unique_id=1102048264]
+[node name="Panel4" type="Panel" parent="Select_CardUI/BluePrint" unique_id=1102048264]
 modulate = Color(0.7372549, 0.7372549, 0.7372549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -443,7 +444,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_kxvtp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Select_CardUI/蓝图展示" unique_id=519398614]
+[node name="Panel" type="Panel" parent="Select_CardUI/BluePrint" unique_id=519398614]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8917198
@@ -455,7 +456,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_kxvtp")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel2" type="Panel" parent="Select_CardUI/蓝图展示" unique_id=2067816038]
+[node name="Panel2" type="Panel" parent="Select_CardUI/BluePrint" unique_id=2067816038]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0021043771
@@ -470,7 +471,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_hna80")
 metadata/_edit_use_anchors_ = true
 
-[node name="Selected_Your_Blueprint" type="Label" parent="Select_CardUI/蓝图展示/Panel2" unique_id=1112252916]
+[node name="Selected_Your_Blueprint" type="Label" parent="Select_CardUI/BluePrint/Panel2" unique_id=1112252916]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -482,7 +483,7 @@ label_settings = SubResource("LabelSettings_ifow5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TouchPad_V2" type="Control" parent="Select_CardUI/蓝图展示" unique_id=1200829566]
+[node name="TouchPad_V2" type="Control" parent="Select_CardUI/BluePrint" unique_id=1200829566]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -500,7 +501,7 @@ Enable_Drag = false
 Auto_Enable_Index = 1
 metadata/_custom_type_script = "uid://blc413ky1v12"
 
-[node name="Panel6" type="Panel" parent="Select_CardUI/蓝图展示/TouchPad_V2" unique_id=319850770]
+[node name="Panel6" type="Panel" parent="Select_CardUI/BluePrint/TouchPad_V2" unique_id=319850770]
 modulate = Color(0.8474744, 0.84747446, 0.84747446, 1)
 clip_children = 2
 layout_mode = 1
@@ -511,7 +512,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("15_b70vt")
 
-[node name="Label" type="Label" parent="Select_CardUI/蓝图展示/TouchPad_V2/Panel6" unique_id=1998719716]
+[node name="Label" type="Label" parent="Select_CardUI/BluePrint/TouchPad_V2/Panel6" unique_id=1998719716]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -523,7 +524,7 @@ label_settings = SubResource("LabelSettings_wvhbo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="准备开始" type="Label" parent="Select_CardUI" unique_id=570368298]
+[node name="Ready Start" type="Label" parent="Select_CardUI" unique_id=570368298]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.4
@@ -547,7 +548,7 @@ vertical_alignment = 1
 clip_text = true
 metadata/_edit_use_anchors_ = true
 
-[node name="播放音效" type="AudioStreamPlayer" parent="Select_CardUI/准备开始" unique_id=1876887387]
+[node name="Souds" type="AudioStreamPlayer" parent="Select_CardUI/Ready Start" unique_id=1876887387]
 stream = ExtResource("18_woa1d")
 
 [node name="Card" type="Control" parent="." unique_id=94881406]
@@ -583,7 +584,6 @@ label_settings = SubResource("LabelSettings_oso7i")
 horizontal_alignment = 1
 
 [node name="Tip" type="Control" parent="Text" unique_id=849014833]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

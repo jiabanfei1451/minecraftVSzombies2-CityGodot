@@ -53,11 +53,18 @@ public partial class ObjectPhysics : Node2D
     /// </summary>
     [Export] public float Acceleration = 0;
     [Export] internal bool Physics_Initialization = false;
+   /// <summary>
+   /// 重置物理坐标
+   /// </summary>
     public void Reset_Position()
     {
         practical_Position = GlobalPosition;
         Physics_Initialization = true;
     }
+    /// <summary>
+    /// 设置物理坐标
+    /// </summary>
+    /// <param name="delta"></param>
     public void SetPhysics_Position(double delta) {
         float FloatDelta = (float)delta;
         if (!Physics_Enable){return;}

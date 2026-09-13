@@ -4,7 +4,7 @@ using My_Csharp_Node;
 using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-namespace Level.Object.Monster;
+namespace MVZ2.Object.Monster;
 /// <summary>
 /// 普通僵尸
 /// </summary>
@@ -104,7 +104,7 @@ public partial class Zombies : Level.Object.LevelObject
                 Damage_Tween.Kill();
             }
             Damage_Tween = CreateTween();
-            Damage_Tween.TweenProperty(this,new NodePath(Level.Object.Monster.Zombies.PropertyName.Temp_Color),new Color(0.75f,-0.5f,-0.5f,1),0.1);
+            Damage_Tween.TweenProperty(this,new NodePath(MVZ2.Object.Monster.Zombies.PropertyName.Temp_Color),new Color(0.75f,-0.5f,-0.5f,1),0.1);
             Tween Temp_Tween = Damage_Tween;
             await ToSignal(Temp_Tween,Tween.SignalName.Finished);
             if (Temp_Tween == Damage_Tween)
@@ -114,7 +114,7 @@ public partial class Zombies : Level.Object.LevelObject
                 Damage_Tween.Kill();
                 }
                 Damage_Tween = CreateTween();
-                Damage_Tween.TweenProperty(this,new NodePath(Level.Object.Monster.Zombies.PropertyName.Temp_Color),new Color(0,0,0,1),0.3);
+                Damage_Tween.TweenProperty(this,new NodePath(MVZ2.Object.Monster.Zombies.PropertyName.Temp_Color),new Color(0,0,0,1),0.3);
             }
         }
         else
@@ -124,7 +124,7 @@ public partial class Zombies : Level.Object.LevelObject
                 Damage_Tween.Kill();
             }
             Damage_Tween = CreateTween();
-            Damage_Tween.TweenProperty(this,new NodePath(Level.Object.Monster.Zombies.PropertyName.Temp_Color ),new Color(0.75f,-0.5f,-0.5f,1),0.1);
+            Damage_Tween.TweenProperty(this,new NodePath(MVZ2.Object.Monster.Zombies.PropertyName.Temp_Color ),new Color(0.75f,-0.5f,-0.5f,1),0.1);
             Kill_Souds.Play();
             RemoveFromGroup("Monster");
             Enable_Health = false;

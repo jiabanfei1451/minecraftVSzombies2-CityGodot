@@ -1,7 +1,8 @@
 using Godot;
 using System;
 using MVZ2_City.Type;
-public partial class Particie : Sprite2D
+namespace MVZ2.Object;
+public partial class Particie : Node2D
 {
     [ExportGroup("Strength")]
     /// <summary>
@@ -69,13 +70,20 @@ public partial class Particie : Sprite2D
     /// </summary>
     [Export] public float QueneFree_Time = 3;
     /// <summary>
+    /// 自动销毁
+    /// </summary>
+    [Export] public bool Auto_QueneFree = true;
+    /// <summary>
     /// 最少Y向量
     /// </summary>
     [Export] public Godot.Vector2 Reset_Position = Vector2.Zero;
+    [Export] public bool Random_Color = false;
     [Export] public WhileMode while_Mode = WhileMode._Process; 
     public override async void _Ready() {
         base._Ready();
-        Modulate = new Color(Game.Get.Random.NextFloat_32(1,0),Game.Get.Random.NextFloat_32(1,0),Game.Get.Random.NextFloat_32(1,0),1);
+        if (Random_Color == true){
+            Modulate = new Color(Game.Get.Random.NextFloat_32(1,0),Game.Get.Random.NextFloat_32(1,0),Game.Get.Random.NextFloat_32(1,0),1);
+        }
         Current_MaxHeight = Game.Get.Random.NextFloat_32(MaxHeight.Y,MaxHeight.X);
         Multiplication *= 1 + Game.Get.Random.NextFloat_32(0,1.5f);
         Current_Max_Position_X_offset = MAX_PositionX_Offset * (float)(new Random().NextDouble() - 0.5) * 2;
@@ -83,8 +91,10 @@ public partial class Particie : Sprite2D
         Current_PositionX_Offset = Current_Max_Position_X_offset / Max_bounce_Number;
         Reset_Position.Y = Position.Y;
         Reset_Position.X = Position.X;
-        await ToSignal(GetTree().CreateTimer(Game.Get.Random.NextFloat_32(QueneFree_Time - 1,QueneFree_Time)),SceneTreeTimer.SignalName.Timeout);
-        QueueFree();
+        if (Auto_QueneFree){
+            await ToSignal(GetTree().CreateTimer(Game.Get.Random.NextFloat_32(QueneFree_Time - 1,QueneFree_Time)),SceneTreeTimer.SignalName.Timeout);
+            QueueFree();
+        }
     }
     public override void _Process(double delta) {
         base._Process(delta);

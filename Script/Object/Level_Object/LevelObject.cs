@@ -155,6 +155,10 @@ public partial class LevelObject : Level.Module.ObjectPhysics
         Reset_Position();
         Area = GetNode<Godot.Area2D>("Area");
     }
+    /// <summary>
+    /// 物体移动
+    /// </summary>
+    /// <param name="delta"></param>
     public void Object_Move(double delta)
     {
         switch (MoveType){
@@ -177,25 +181,39 @@ public partial class LevelObject : Level.Module.ObjectPhysics
                 level = Get_Level;
             }
         }
-        // 高度重定向
+                // 高度重定向
         if (level != null && AutoSet_Lawn_Index == true)
         {
             if (Temp_Position_Y != practical_Position.Y + position_Offset.Y)
             {
                 Temp_Position_Y = practical_Position.Y + position_Offset.Y;
-                if (Lawn_Index != -1){
-                    level.Move_Lawn_Index(this,level.Get_LawnIndex(this));
-                }
-                else
-                {
-                    Lawn_Index = level.Get_LawnIndex(this);
-                    level.Add_Lawn_Index(this,Lawn_Index);
-                }
+                reset_Lawn_Index();
             }
+        }
+        else
+        {
+            GD.Print("??");
         }
         SetPhysics_Position(delta);
     }
-
+    /// <summary>
+    /// 重新设置索引
+    /// </summary>
+    public void reset_Lawn_Index()
+    {
+        if (Lawn_Index != -1){
+            level.Move_Lawn_Index(this,level.Get_LawnIndex(Position,position_Offset));
+        }
+        else
+        {
+            Lawn_Index = level.Get_LawnIndex(Position,position_Offset);
+            level.Add_Lawn_Index(this,Lawn_Index);
+        }
+    }
+    /// <summary>
+    /// 重启检测器
+    /// </summary>
+    /// <returns></returns>
     public async Task Reset_Area()
     {
         if (!Enable)
@@ -257,6 +275,7 @@ public partial class LevelObject : Level.Module.ObjectPhysics
         }
         if (node is Level.Object.LevelObject && node != this)
         {
+            if (!((Level.Object.LevelObject)node).Enable || !((Level.Object.LevelObject)node).Enable_Health){return;}
             bool Cheak = Game.Cheak.CheakGroup.Cheak_Object_Group(node,detection_Group,Exclude_Group);
             if (!Cheak){return;}
             Current_detection_object.Add((Level.Object.LevelObject)node);

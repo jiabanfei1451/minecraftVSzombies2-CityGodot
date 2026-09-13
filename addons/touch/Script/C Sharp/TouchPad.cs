@@ -255,12 +255,14 @@ public partial class TouchPad : Godot.Control
 	}
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
+		if (!Enable){return;}
 		if (Cycle_mode == Cycle_Type._PhysicsProcess){
 		Plus_Time(delta);
 		}
 	}
 	public void Plus_Time(Double Time)
 	{
+		if (!Enable){return;}
 		if (Enable_Long_Click == true){
 			if (Pressed == true){
 				Pressed_Time += Time;}
@@ -274,10 +276,12 @@ public partial class TouchPad : Godot.Control
 	}
 	public override void _Input(InputEvent @event) {
 		base._Input(@event);
+		if (!Enable){return;}
 		判定(@event);
 	}
 	public void 判定(Godot.InputEvent @event)
 	{
+		if (!Enable){return;}
 		if (Auto_Set_Enable == true)
 		{
 			if (Touch.Touch_Index.Get_Index(Auto_Enable_Index) == false)
@@ -483,6 +487,7 @@ public partial class TouchPad : Godot.Control
 	/// <returns></returns>
 	public int Get_Touch_Index(int Index)
 	{
+		if (!Enable){return -1;}
 		if (Touch_Index != null && !Touch_Index.Contains(Index)){return -1;}
 		return Index;
 	}
@@ -491,6 +496,7 @@ public partial class TouchPad : Godot.Control
 	/// </summary>
 	/// <param name="Mode">0添加 1删除</param>
 	public void Set_Touch_Index(int Mode = 0,int Index = -99){
+		if (!Enable){return;}
 		if (Index == -99){return;}
 		switch (Mode)
 		{
@@ -515,6 +521,7 @@ public partial class TouchPad : Godot.Control
 	/// <returns></returns>
 	public bool Velocity(Godot.Vector2 velocity)
 	{
+		if (!Enable){return false;}
 		bool x = false;
 		bool y = false;
 		if (velocity.X > Drag_Velocity_Scope.X){
@@ -546,6 +553,7 @@ public partial class TouchPad : Godot.Control
 	/// <returns></returns>
 	public Vec2 Get_Touch_Velocity(Godot.InputEvent @event)
 	{
+		if (!Enable){return null;}
 		Vec2 vec = new Vec2(); 
 		if (@event is InputEventScreenDrag){
 			InputEventScreenDrag drag = (InputEventScreenDrag)@event;
@@ -604,6 +612,7 @@ public partial class TouchPad : Godot.Control
 	/// <returns></returns>
 	public bool Touch_Calculation(Godot.Vector2 Event_Position,Godot.Vector2 Object_Position,Godot.Vector2 Scope)
 	{	
+		if (!Enable){return false;}
 		Godot.Vector2 Calculation = (Object_Position - Event_Position) * -1;
 		if (Calculation.X < 0 || Calculation.Y < 0 || Calculation.X > Scope.X || Calculation.Y > Scope.Y)
 		{

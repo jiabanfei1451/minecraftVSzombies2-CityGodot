@@ -9,6 +9,7 @@ public partial class LevelUi : CanvasLayer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Game.Get_GlobalNode.Node_Data.Add_Node(this,"Current_Level_UI");
 		show_Select_CardUI();
 		DEBUG.Info.Print(Game.Get_GlobalNode.Node_Data.Get_Node<Control>("1"));
 	}

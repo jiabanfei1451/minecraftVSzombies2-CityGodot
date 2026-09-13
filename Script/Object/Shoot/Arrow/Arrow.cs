@@ -30,9 +30,9 @@ public partial class Arrow : Level.Object.BulletData
     {
         if (node is Level.Object.LevelObject)
         {
-            bool Cheak = Game.Cheak.CheakGroup.Cheak_Object_Group(node,detection_Group,Exclude_Group);
-            if (!Cheak){return;}
-            ((Level.Object.LevelObject)node).Reduce_Health(Damage,this);
+            bool check = Game.Cheak.CheakGroup.Cheak_Object_Group(node,detection_Group,Exclude_Group);
+            if (!check){return;}
+            Check_Object[0].Reduce_Health(Damage,this);
             QueueFree();
         }
     }

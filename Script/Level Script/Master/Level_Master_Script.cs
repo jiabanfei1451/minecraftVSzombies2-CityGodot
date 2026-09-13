@@ -5,6 +5,7 @@ using My_Csharp_Node;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using MVZ2_City.Type;
+using DEBUG;
 
 namespace Level;
 /// <summary>
@@ -23,6 +24,7 @@ public partial class Level_Master_Script : Node2D{
 	[Signal]
 	public delegate void Object_Change_LineEventHandler(Level.Object.LevelObject Data_Object);
 	#region 变量
+	[Export] public bool DeBug = true;
 	[ExportCategory("看什么?难道你不知道脚本里有中文注释吗?")]
 	[ExportGroup("BGM")][Export] public String Level_BGMID = "0";
 	/// <summary>
@@ -132,9 +134,37 @@ public partial class Level_Master_Script : Node2D{
 	/// 用于摄像机缓动的process
 	/// </summary>
 	/// <param name="delta"></param>
+	internal bool Seed_OK = false;
+	internal byte Temp_audio_Scale = 0;
+	internal float Temp_audio_await_timer = 0; 
 	#endregion
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
+		if (Temp_audio_Scale != Level_Script.audio_Scale)
+		{
+			Temp_audio_Scale = Level_Script.audio_Scale;
+			Temp_audio_await_timer = 3;
+		}
+		else
+		{
+			if (Temp_audio_await_timer > 0){
+				Temp_audio_await_timer -= (float)delta;
+			}
+			else
+			{
+				if (Level_Script.audio_Scale != 0)
+				{
+					Level_Script.audio_Scale = 0;
+				}
+			}
+		}
+		if (Seed_OK == false){
+			if (Game.Get_GlobalNode.CommandEdit != null)
+			{
+				Seed_OK = true;
+				Game.Get_GlobalNode.CommandEdit.Player_seed += Get_Player_Seed;
+			}
+		}
 		if (Summand.Level_Object != this) // 初始化生成物体
 		{
 			Summand.Level_Object = this;
@@ -152,6 +182,16 @@ public partial class Level_Master_Script : Node2D{
 	/// </summary>
 	public async void choose_Card()
     {
+		var s = Game.Get_GlobalNode.Node_Data.Get_Node<CanvasLayer>("Current_Level_UI", Get_GlobalNode.Node_Data.Mode_Type.Name);
+		if (s != null)
+		{
+			s.QueueFree();
+		}
+		Game.Get_GlobalNode.Node_Data.Remove_Node("Current_Level_UI", Get_GlobalNode.Node_Data.Mode_Type.Name);
+		Game.Get_GlobalNode.Node_Data.Screening_Not_Null_Node();
+
+		Touch.Touch_Index.clear();
+		Game.Get_GlobalNode.Get_Card_Data(GetTree()).Initialization();
 		Tween Twee = CreateTween();
         PackedScene Scene = Game.ResourceScene.LoadScene("uid://bllinxtvttldn");
 		Game.Get_GlobalNode.Get_Muisc_Engine(GetTree()).new_playMuisc("CH:选卡");
@@ -194,10 +234,20 @@ public partial class Level_Master_Script : Node2D{
 	public async void Completed_Selected_Card()
 	{
 		Game.Get_GlobalNode.Node_Data.Get_Node<Node2D>("Equipment").YSortEnabled = true;
-		Game.Get_GlobalNode.Node_Data.Get_Node<Node2D>("Master").YSortEnabled = true;
+		Game.Get_GlobalNode.Node_Data.Get_Node<Node2D>("Monster").YSortEnabled = true;
 		Tween Twee = CreateTween();
 		Twee.TweenProperty(this,new Godot.NodePath(Level.Level_Master_Script.PropertyName.Camera2D_Position),new Vector2(-105,0),1);
 		await ToSignal(Twee,Tween.SignalName.Finished);
+	}
+	public void Get_Player_Seed(String Seed_Why)
+	{
+		if (Seed_Why.IndexOf("/ReStart") != -1)
+		{
+			choose_Card();
+		}else if (Seed_Why.IndexOf("/Exit") != -1)
+		{
+			GetTree().Quit();
+		}
 	}
 	#region 草坪方法
 	/// <summary>
@@ -268,7 +318,12 @@ public partial class Level_Master_Script : Node2D{
 		}
 		return false;
 	}
-	public int Get_LawnIndex(Level.Object.LevelObject This)
+	/// <summary>
+	/// 获取草坪索引
+	/// </summary>
+	/// <param name="This"></param>
+	/// <returns></returns>
+	public int Get_LawnIndex(Godot.Vector2 Position,Godot.Vector2 Offset_Position)
     {
 		// 草坪生成坐标
         float Position_Y = Lawn_Spawn_Position.Y;
@@ -279,14 +334,15 @@ public partial class Level_Master_Script : Node2D{
 		// 最大索引
         int MaxIndex = Lawn_Object_Index.Count;
         // Y坐标偏移
-		float Y_offset = Get_This_Offset(This).Y;
+		float Y_offset = Get_This_Offset(Position).Y;
 		// 坐标索引
-		float Index = This.practical_Position.Y + This.position_Offset.Y + Y_offset;
-
-        while(Index >= Position_Y)
+		float Index = Position.Y + Offset_Position.Y + Y_offset;
+        
+		while(Index >= Position_Y)
         {
             if (Index >= Position_Y)
             {
+				GD.Print(Index);
                 Index -= IndexNumber;
                 Current_Lawn_Index += 1;
             }
@@ -307,9 +363,9 @@ public partial class Level_Master_Script : Node2D{
 	/// </summary>
 	/// <param name="This"></param>
 	/// <returns></returns>
-	public Vector2 Get_This_Offset (Level.Object.LevelObject This)
+	public Vector2 Get_This_Offset (Godot.Vector2 position)
 	{
-		GD.Print("坐标索引:",Check_Position_Offset.Count);
+		Info.Print("坐标索引:",Check_Position_Offset.Count);
 		Vector2 Back_Vector2 = Vector2.Zero;
 		if (Check_Position_Offset.Count == 0)
 		{
@@ -317,16 +373,16 @@ public partial class Level_Master_Script : Node2D{
 		}
 		foreach(Vector2 vector in Check_Position_Offset)
 		{
-			GD.Print(vector.X);
-			GD.Print(This.Position.X);
-			GD.Print(This.Position.X > vector.X);
+			Info.Print(vector.X);
+			Info.Print(position.X);
+			Info.Print(position.X > vector.X);
 			Back_Vector2 = vector;
-			if (This.Position.X > vector.X)
+			if (position.X > vector.X)
 			{
 				break;
 			}
 		}
-		GD.Print("坐标返回:",Back_Vector2);
+		Info.Print("坐标返回:",Back_Vector2);
 		return Back_Vector2;
 	}
 	/// <summary>
@@ -509,6 +565,7 @@ public partial class Level_Master_Script : Node2D{
 	/// </summary>
 	public static class Summand
 	{
+		public static ulong Seed = 1;
 		/// <summary>
 		/// 树节点
 		/// </summary>
@@ -566,10 +623,19 @@ public partial class Level_Master_Script : Node2D{
 		/// </summary>
 		public static bool Summand_Ing = false;
 		/// <summary>
+		/// 随机生成器
+		/// </summary>
+		public static Godot.RandomNumberGenerator random = new();
+		/// <summary>
 		/// 运算逻辑
 		/// </summary>
 		/// <param name="delta"></param>
 		public static WhileMode While_Mode = WhileMode.Process;
+		public static void _Ready()
+		{
+			Seed = (ulong)new Random().Next(0,210000000);
+			random.Seed = Seed;
+		}
 		public enum WhileMode
 		{
 			While = 0,
@@ -622,7 +688,7 @@ public partial class Level_Master_Script : Node2D{
 		/// <param name="AwaitNextTime">生成后等待一段时间进行下一波</param>
 		/// <param name="AwaitMouster">怪物全部死亡时是否快速进行下一波</param>
 		/// <returns></returns>
-		public static async Task Add_wave(
+		public static void Add_wave(
 			List<MVZ2_City.Type.ID> SummandID,int SummandNumber,
 			float AwaitNextTime,bool AwaitMouster)
 		{
@@ -649,20 +715,36 @@ public partial class Level_Master_Script : Node2D{
 			ENDCheck_ID.Clear();
 			ENDCheck_bool.Clear();
 		}
+		public static Card_Data.GlobalData Get_data(MVZ2_City.Type.ID Object_ID)
+		{
+			Game.Card_Data card_Data = Game.Get_GlobalNode.Get_Card_Data(Tree);
+			
+			MVZ2_City.Object_List object_List = Game.Get_GlobalNode.object_List;
+			Game.Card_Data.GlobalData data = card_Data.Get_CardData(object_List.Get_Packed(Object_ID));
+			return data;
+		}
 		/// <summary>
 		/// 生成物体
 		/// </summary>
 		/// <param name="Object_ID"></param>
 		public static void Summand_Object(MVZ2_City.Type.ID Object_ID)
 		{
+			Game.Card_Data.GlobalData data = Get_data(Object_ID);
 			if (Tree == null){return;}
-			MVZ2_City.Object_List object_List = Game.Get_GlobalNode.Get_Object_List(Tree);
 			//检测
 			bool check = Check_ID(Object_ID);
+			
+			int Lawn_Index = random.RandiRange(0,Level_Object.Lawn_Array.Count - 1);
+			Node2D MonsterNode = Game.Get_GlobalNode.Node_Data.Get_Node<Node2D>("Monster");
+			Level.Object.LevelObject levelObject = data.Scene.Instantiate<Level.Object.LevelObject>();
+			levelObject.Position = Level_Object.Lawn_Spawn_Position + data.Map_Offset + new Vector2(Level_Object.Lawn_Spawn_Offect.X * 9,Level_Object.Lawn_Spawn_Offect.X * Lawn_Index);
+			levelObject.Scale = data.Map_Scale;
 			if (!check)
 			{
 				
-			}			
+			}
+			MonsterNode.AddChild(levelObject);
+
 		}
 		/// <summary>
 		/// 检测ID

@@ -2,12 +2,18 @@
 using Godot;
 using System;
 using Game.AutoLoad;
+using AutoLoad;
+using MVZ2_City;
 namespace Game{
 /// <summary>
 /// 获取全局节点
 /// </summary>
 static class Get_GlobalNode
 {
+	/// <summary>
+	/// 输入框
+	/// </summary>
+	public static Command_Edit CommandEdit = null;
 	/// <summary>
 	/// 当前关卡可读取的节点数据
 	/// </summary>
@@ -18,6 +24,7 @@ static class Get_GlobalNode
 		// Name
 		new Godot.Collections.Array(){},
 	};
+	public static Object_List object_List = null;
 	/// <summary>
 	/// 用于添加删除节点索引的类
 	/// </summary>
@@ -158,11 +165,6 @@ static class Get_GlobalNode
 	{
 		Muisc_Engine muisc_Engine = tree.Root.GetNode<Muisc_Engine>("MuiscEngine");
 		return muisc_Engine;
-	}
-	public static MVZ2_City.Object_List Get_Object_List(SceneTree tree)
-	{
-		MVZ2_City.Object_List List = tree.Root.GetNode<MVZ2_City.Object_List>("ObjectList");
-		return List;
 	}
 	/// <summary>
 	/// 获取音频列表

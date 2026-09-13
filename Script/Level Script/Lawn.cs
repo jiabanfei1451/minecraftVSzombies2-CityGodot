@@ -36,6 +36,10 @@ public partial class Lawn : ColorRect{
 		{
 			s.Summand_Lawn = this;
 		}
+		if (Game.Cheak.CheakGroup.Cheak_Object_Group(s,new(){"Monster"},new(){""}) == true)
+			{
+				Current_Object.Equipment_Object = null;
+			}
 	}
 	public void focus_Join()
 	{
@@ -67,8 +71,9 @@ public partial class Lawn : ColorRect{
 			Temp_Node.Enable = false;
 			Temp_Node.Enable_Health = false;
 		}
-		this.AddChild(new_Node2d);
 		new_Node2d.Position = Temp_Data.Map_Offset;
+		GD.Print(Temp_Data.Map_Offset);
+		this.AddChild(new_Node2d);
 		new_Node2d.Modulate = new Color(1,1,1,0.3f);
 	}
 	public void Free_Object(){

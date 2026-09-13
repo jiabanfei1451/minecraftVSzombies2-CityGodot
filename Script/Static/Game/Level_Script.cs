@@ -11,6 +11,10 @@ static class Level_Script : Object
 	/// 器械能
 	/// </summary>
 	public static short Equipment_Capable = 200;
+	/// <summary>
+	/// 音高
+	/// </summary>
+	public static byte audio_Scale = 0;
 	public static Godot.ColorRect Lawn;
 	public enum Calculation_Type
 	{

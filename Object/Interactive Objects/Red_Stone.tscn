@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dmfe85smdma7l"]
+
+[ext_resource type="Texture2D" uid="uid://000jvcrnen6e" path="res://Object/素材图/sactx-0-1024x2048-BC7-entities-d025fdc4.png" id="1_mhhdk"]
+[ext_resource type="Script" uid="uid://c2xj1saqmvm84" path="res://Script/Object/Interactive Objects/RedStone.cs" id="1_pdmyc"]
+[ext_resource type="Script" uid="uid://dxcwm5rs1tc5b" path="res://addons/touch/Script/C Sharp/TouchPad.cs" id="3_pdmyc"]
+[ext_resource type="AudioStream" uid="uid://bxakp63atbam4" path="res://Sound/Souds/points.wav" id="4_rbki6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa71h"]
+atlas = ExtResource("1_mhhdk")
+region = Rect2(309, 981, 48, 42)
+
+[sub_resource type="Animation" id="Animation_hnhgi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cub6k"]
+resource_name = "pressed"
+length = 1.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.49999997, 0.4061262),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.51763225, 0.16493855),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_raaxr"]
+_data = {
+&"RESET": SubResource("Animation_hnhgi"),
+&"pressed": SubResource("Animation_cub6k")
+}
+
+[node name="Red_Stone" type="Node2D" unique_id=2080088656 node_paths=PackedStringArray("pad", "Souds", "anima")]
+position = Vector2(295, 186)
+script = ExtResource("1_pdmyc")
+pad = NodePath("TouchPad")
+Souds = NodePath("AudioStreamPlayer")
+anima = NodePath("AnimationPlayer")
+Set_Position_Multiplication = 2.0
+Multiplication = Vector2(5, 5)
+MaxHeight = Vector2(30, 15)
+Auto_QueneFree = false
+
+[node name="TextureRect" type="Sprite2D" parent="." unique_id=1752891124]
+texture = SubResource("AtlasTexture_qa71h")
+metadata/_edit_lock_ = true
+
+[node name="TouchPad" type="Control" parent="." unique_id=61265432]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("3_pdmyc")
+metadata/_custom_type_script = "uid://dxcwm5rs1tc5b"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2121515650]
+stream = ExtResource("4_rbki6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2025436745]
+libraries/ = SubResource("AnimationLibrary_raaxr")

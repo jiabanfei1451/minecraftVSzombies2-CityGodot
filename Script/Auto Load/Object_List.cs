@@ -1,7 +1,6 @@
 using Godot;
 using MVZ2_City.Type;
 using System;
-using System.Collections.Generic;
 namespace MVZ2_City;
 public partial class Object_List : Node
 {
@@ -19,6 +18,7 @@ public partial class Object_List : Node
     public Godot.Collections.Array<PackedScene> Object_PackedScene = new(){};
     public override void _Ready() {
         base._Ready();
+        Game.Get_GlobalNode.object_List = this;
         add_Object_Packed(Game.ResourceScene.LoadScene("uid://bx78lmkp8si7e"),"MVZ2:Zombies","僵尸");
         add_Object_Packed(Game.ResourceScene.LoadScene("res://Object/Equipment/Transmitter.tscn"),"MVZ2:Transmitter","发射器");
     }
@@ -31,7 +31,7 @@ public partial class Object_List : Node
     /// <summary>
     /// 获取场景
     /// </summary>
-    /// <param name="ID_Object"></param>
+    /// <param name="ID_Object">实例ID</param>
     /// <returns></returns>
     public PackedScene Get_Packed(MVZ2_City.Type.ID ID_Object)
     {
@@ -52,13 +52,13 @@ public partial class Object_List : Node
     public MVZ2_City.Type.ID Get_ID(String Index = "0",MVZ2_City.Type.ID.IndexMode indexMode = ID.IndexMode.Name)
     {
         MVZ2_City.Type.ID iD = new(-1,"-1");
-        if (Index[0..4] == "Str:")
+        if (Index.Length > 4 && Index[0..4] == "Str:")
         {
             iD.Object_ID = Object_Name_ID.IndexOf(Index[5..]);
             iD.Object_Name_ID = Object_Name_ID[iD.Object_ID];
             iD.CH_Name = Object_CH_Name[iD.Object_ID];
         }
-        else if (Index[0..3] == "CH:")
+        else if (Index.Length > 4 && Index[0..3] == "CH:")
         {
             iD.Object_ID = Object_CH_Name.IndexOf(Index[4..]);
             iD.Object_Name_ID = Object_Name_ID[iD.Object_ID];

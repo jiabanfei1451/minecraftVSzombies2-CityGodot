@@ -1,7 +1,7 @@
 using Godot;
 using DEBUG;
 using System.Threading.Tasks;
-namespace Level.Object.Equipment;
+namespace MVZ2.Object.Equipment;
 /// <summary>
 /// 发射器
 /// </summary>
@@ -41,7 +41,7 @@ public partial class Transmitter : Level.Object.LevelObject
         Shoot_Sound = GetNode<AudioStreamPlayer>("Souds");
         this.AnimationPlayer = GetNode<AnimationPlayer>("Animation");
         if (Area == null){return;}
-        Area.BodyEntered += Add_Object;
+        Area.BodyEntered += ObjectJoin;
         Area.BodyExited += ObjectExit;
         var @r = Reset_Area();
     }
@@ -88,6 +88,20 @@ public partial class Transmitter : Level.Object.LevelObject
         Node2D shoot = Shoot_Scene.Instantiate<Node2D>();
         Game.Get_GlobalNode.Node_Data.Get_Node<Node2D>("Shoot").AddChild(shoot);
         shoot.GlobalPosition = Summand_shoot_Position.GlobalPosition;
+    }
+    /// <summary>
+    /// 添加物体
+    /// </summary>
+    /// <param name="Node"></param>
+    public void ObjectJoin (Node2D Node)
+    {
+        if (Node is Level.Object.LevelObject)
+        {
+            if (((Level.Object.LevelObject)Node).Lawn_Index == Lawn_Index)
+            {
+                Add_Object(Node);
+            }
+        }
     }
     /// <summary>
     /// 剔除不存在或死亡的物体

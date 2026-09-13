@@ -64,6 +64,8 @@ public partial class Card_Data : Node
 		Initialization();
 		#region 增加器械数据
 		Add_Data(Game.ResourceScene.LoadScene("res://Object/Equipment/Transmitter.tscn"),100,7.5f,3,new Vec(2,2),new Vec(64,87));
+		Add_Data(Game.ResourceScene.LoadScene("res://Object/Equipment/Furnace.tscn"),50,7.5f,7.5f,new Vec(2,2),new Vec(72,87));
+		Add_Data(Game.ResourceScene.LoadScene("uid://bx78lmkp8si7e"),0,0,0,new Vec(2,2),new Vec(80,186),null,new Vec(40,70f));
 		Add_Data(Game.ResourceScene.LoadScene("uid://dhqc163eiuqrd"),78,0,0,new Vec(2,2),new Vec(64,87));
 		Add_Data(Game.ResourceScene.LoadScene("uid://7b6d3hect1in"),0,0,0,new Vec(2,2),new Vec(64,87));
 		Add_Data(Game.ResourceScene.LoadScene("uid://djytruxu3c3qt"),0,0,0,new Vec(2,2),new Vec(64,87));
@@ -202,8 +204,8 @@ public partial class Card_Data : Node
 		if (Mouse_Offset != null){
 			New_Mouse_Offset = new Godot.Vector2(Mouse_Offset.X,Mouse_Offset.Y);
 		}
-		if (Mouse_Offset != null){
-			New_Map_Offset = new Godot.Vector2(Mouse_Offset.X,Map_Offset.Y);
+		if (Map_Offset != null){
+			New_Map_Offset = new Godot.Vector2(Map_Offset.X,Map_Offset.Y);
 		}
 		if (Map_Scale != null)
 		{
@@ -220,6 +222,11 @@ public partial class Card_Data : Node
 		Data[8].Add(New_Map_Scale);
 	}
 	#endregion
+	/// <summary>
+	/// 获取索引数据
+	/// </summary>
+	/// <param name="Index"></param>
+	/// <returns></returns>
 	public GlobalData Get_CardData(int Index)
 	{
 		if (Index > -1)
@@ -238,7 +245,15 @@ public partial class Card_Data : Node
 		}
 		else{return null;}
 	}
-	
+	/// <summary>
+	/// 场景搜索方法
+	/// </summary>
+	/// <param name="Index"></param>
+	/// <returns></returns>
+	public GlobalData Get_CardData(PackedScene Index)
+	{
+		return Get_CardData(Data[0].IndexOf(Index));
+	}
 	#region Class
 	/// <summary>
 	/// 卡槽贴图实例

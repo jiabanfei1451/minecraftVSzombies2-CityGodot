@@ -1,12 +1,19 @@
-using Godot;
 using System;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-
+using Godot;
+namespace AutoLoad;
 public partial class Command_Edit : TextEdit
 {
+	/// <summary>
+	/// 玩家发送信息事件
+	/// </summary>
+	[Signal] public delegate void Player_seedEventHandler(String Seed_Why);
 	[Export] public bool SB = false;
 	static PackedScene Line = Game.ResourceScene.LoadScene("uid://bd74mkx2jelk1");
+	public override void _Ready() {
+		base._Ready();
+		Game.Get_GlobalNode.CommandEdit = this;
+		return;
+	}
 	public override void _Input(InputEvent @event) {
 		base._Input(@event);
 		if (@event is InputEventKey)
@@ -29,6 +36,7 @@ public partial class Command_Edit : TextEdit
 					SB = false;
 					Label Lineinstantiate = Line.Instantiate<Label>();
 					Lineinstantiate.Text = "  " + "<" + "User" + ">:" + Text[0..(Text.Length - 1)] + " ";
+					EmitSignal("Player_seed",Lineinstantiate.Text);
 					this.GetNode<BoxContainer>("../../TextLine").AddChild(Lineinstantiate);
 					Position = new Vector2(0,0);
 					Editable = false;
